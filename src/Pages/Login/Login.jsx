@@ -1,13 +1,22 @@
+import { Link } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
 
 const Login = () => {
+
+  const handleLogin = e =>{
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const email = form.get('email')
+    const password = form.get('password')
+    console.log(email, password);
+  }
   return (
     <div>
       <Navbar></Navbar>
       
       <div className="mx-auto rounded-[5px] card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
         <h2 className="text-[30px] text-center font-semibold m-12 mb-0 pb-8 border-b-2">Login your account</h2>
-        <form className="card-body px-12">
+        <form onSubmit={handleLogin} className="card-body px-12">
           <div className="form-control">
             <label className="label">
               <span className="label-text text-[18px] text-[#403F3F] font-semibold">Email Address</span>
@@ -15,7 +24,7 @@ const Login = () => {
             <input
               type="email"
               name="email"
-              placeholder="email"
+              placeholder="Email"
               className="input input-bordered"
               required
             />
@@ -26,7 +35,7 @@ const Login = () => {
             </label>
             <input
               type="password"
-              placeholder="password"
+              placeholder="Password"
               name="password"
               className="input input-bordered"
               required
@@ -38,9 +47,10 @@ const Login = () => {
             </label>
           </div>
           <div className="form-control mt-4">
-            <button className="btn bg-[#403F3F] text-[#FFF] hover:bg-[#403F3F] rounded-[5px]">Login</button>
+            <button type="submit" className="btn bg-[#403F3F] text-[#FFF] hover:bg-[#403F3F] rounded-[5px]">Login</button>
           </div>
         </form>
+        <p className="text-[#706F6F] text-[16px] text-center -mt-4 pb-2">Dont’t Have An Account ? <Link to='/register' className="text-[#F75B5F] font-semibold">Register</Link></p>
       </div>
     </div>
   );
